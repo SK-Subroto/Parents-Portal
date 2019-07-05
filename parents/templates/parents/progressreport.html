@@ -1,0 +1,70 @@
+{% extends 'parents/base.html' %}
+{% block content %}
+{% load static %}
+    <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Hello, <span>Welcome Here</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-4 p-l-0 title-margin-left">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Progress Report</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                </div>
+                <!-- /# row -->
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Progress Line</h4>
+                                    <div id="morris-line-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- column -->
+                        <!-- column -->
+                        
+                        <!-- column -->
+                        <!-- column -->
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Highest vs Student</h4>
+                                    <div id="morris-bar-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                 <p>2019 ~ Department of software engineering. - <a href="#">DIU</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="{% static 'parentsassets/js/lib/morris-chart/raphael-min.js/' %}"></script>
+        <script src="{% static 'parents/assets/js/lib/morris-chart/morris.js' %}"></script>
+        <script src="{% static 'parents/assets/js/lib/morris-chart/morris-init.js' %}"></script>
+        <script src="{% static 'parents/assets/js/lib/bootstrap.min.js' %}"></script>
+        <script src="{% static 'parents/assets/js/scripts.js' %}"></script>
+        <!-- scripit init-->
+{% endblock content %}
