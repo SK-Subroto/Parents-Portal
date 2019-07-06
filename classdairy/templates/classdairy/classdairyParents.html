@@ -101,20 +101,7 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	var actions = $("table td:last-child").html();
 	// Append table with add row form on add new button click
-    $(".add-new").click(function(){
-		$(this).attr("disabled", "disabled");
-		var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><div class="form-control" name="name" id="name"></div></td>' +
-            '<td><input type="Date" class="form-control" name="date" id="date"></td>' +
-            '<td><input type="text" class="form-control" name="content" id="content"></td>' +
-            '<td><select class="form-control" name="subject" id="subject"><option value="E">ENG</option><option value="B">BAN</option></select></td>' +
-			'<td>' + actions + '</td>' +
-        '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+  
 	// Add row on add button click
 	$(document).on("click", ".add", function(){
 		var empty = false;
@@ -159,22 +146,19 @@ $(document).ready(function(){
     //});
    
 	// Delete row on delete button click
-	$(document).on("click", ".delete", function(){
-        $(this).parents("tr").remove();
-		$(".add-new").removeAttr("disabled");
-    });
+	
 });
 </script>
 </head>
 <body>
     <div class="container">
-        <div class="table-wrapper">
+        <div class=""> 
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Class Dairy</h2></div>
+                    <div class="col-sm-8"><h2>Parents View Class Dairy</h2></div>
                     <div class="col-sm-4">
                         {% comment %} <a href="{% url 'classdairy-create' %}" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a> {% endcomment %}
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                        {% comment %} <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -185,6 +169,8 @@ $(document).ready(function(){
                         <th>Date</th>
                         <th>Home Work</th>
                         <th>Subject</th>
+                        <th>Check</th>
+                        <th>Comment</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -195,10 +181,16 @@ $(document).ready(function(){
                             <td>{{ dairy.date_post }}</td>
                             <td>{{ dairy.content }}</td>
                             <td>{{ dairy.subject }}</td>
+                            {% if dairy.check == True %}
+                            <td><input type='checkbox' checked></td>
+                            {% else %}
+                            <td><input type='checkbox'></td>
+                            {% endif %}
+                            
+                            <td><textarea>{{ dairy.comment }}</textarea></td>
                             <td>
-                                <a class="add" title="Add" data-toggle="tooltip" href="#"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'classdairy-update' dairy.id %}"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="{% url 'classdairy-delete' dairy.id %}"><i class="material-icons">&#xE872;</i></a>
+                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'parents-classdairy-update' dairy.id %}"><i class="material-icons">&#xE254;</i></a>
+                                {% comment %} <a class="delete" title="Delete" data-toggle="tooltip" href="{% url 'classdairy-delete' dairy.id %}"><i class="material-icons">&#xE872;</i></a> {% endcomment %}
                             </td>
                         </tr>
                     {% endfor %}
