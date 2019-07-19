@@ -12,5 +12,5 @@ urlpatterns = [
     path('dairy/', views.Dairy.as_view(), name='parents-dairy'),
     path('notice/', views.notice, name='parents-notice'),
     path('result/', views.result, name='parents-result'),
-    path('progressreport/', views.progressreport, name='parents-progressreport'),
+    # path('progressreport/', views.progressreport, name='parents-progressreport'),
 ]
