@@ -149,24 +149,14 @@ $(document).ready(function(){
 		}		
     });
 	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){		
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-		});	
+	//$(document).on("click", ".edit", function(){		
+        //$(this).parents("tr").find("td:not(:last-child)").each(function(){
+			//$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+		//});	
         	
-		$(this).parents("tr").find(".add, .edit").toggle();
-         $.post("{% url 'classdairy-update' 3 %}",
-          {
-            date_post: $("#date").val(),
-            content: $("#content").val(),
-            subject: $("#subject").val(),
-            csrfmiddlewaretoken: '{{csrf_token}}'
-          },
-          function(data, status){
-           // alert("Data: " + data + "\nStatus: " + status);
-          });
-		$(".add-new").attr("disabled", "disabled");
-    });
+		//$(this).parents("tr").find(".add, .edit").toggle();
+		//$(".add-new").attr("disabled", "disabled");
+    //});
    
 	// Delete row on delete button click
 	$(document).on("click", ".delete", function(){
@@ -207,7 +197,7 @@ $(document).ready(function(){
                             <td>{{ dairy.subject }}</td>
                             <td>
                                 <a class="add" title="Add" data-toggle="tooltip" href="#"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip" href="#"><i class="material-icons">&#xE254;</i></a>
+                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'classdairy-update' dairy.id %}"><i class="material-icons">&#xE254;</i></a>
                                 <a class="delete" title="Delete" data-toggle="tooltip" href="{% url 'classdairy-delete' dairy.id %}"><i class="material-icons">&#xE872;</i></a>
                             </td>
                         </tr>

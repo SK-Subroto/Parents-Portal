@@ -37,5 +37,5 @@ def notice(request):
 def result(request):
     return render(request, 'parents/result.html', {'title':'result'} )
 
-def progressreport(request):
-    return render(request, 'parents/progressreport.html', {'title':'progressreport'} )
+# def progressreport(request):
+#     return render(request, 'parents/progressreport.html', {'title':'progressreport'} )
