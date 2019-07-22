@@ -1,0 +1,27 @@
+{% extends 'administrator/base3.html' %}
+{% block content %}
+    
+    <div class='container'>
+    <div class="col-sm-8"><h2>Notice Board</h2></div>
+        <div class="col-sm-4">
+            <a href="{% url 'notice-create' %}" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
+            
+        </div>
+        {% for notice in notices %}
+            <article class="media content-section">
+                <div class="media-body">
+                <div class="article-metadata">
+                <a class="mr-2" href="#">{{ notice.author }}</a>
+                <small class="text-muted">{{ notice.date_posted }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url 'notice-detail' notice.id %}">{{ notice.title }}</a></h2>
+                <p class="article-content">{{ notice.content }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    
+    </div>
+        
+
+    
+{% endblock content %}
