@@ -21,6 +21,7 @@ from users import views as user_views
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('',include('landing.urls')),
     path('admin/', admin.site.urls),
     path('parents/', include('parents.urls')),
     path('teacher/', include('teacher.urls')),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('classdairy/', include('classdairy.urls')),
     path('progress_report/', include('progress_report.urls')),
     path('behaviour/', include('behaviour.urls')),
+    path('notice/',include('notice.urls')),
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
