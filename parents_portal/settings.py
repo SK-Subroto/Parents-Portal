@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'subject',
     'admission',
     'result',
+    'behaviour',
     'crispy_forms',
     'rest_framework',
     'django.contrib.admin',
