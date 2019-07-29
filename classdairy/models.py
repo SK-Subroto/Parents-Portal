@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
-# from django.urls import reverse
-
+# from django.contrib.auth.models import User
+from django.urls import reverse
+from users.models import User
 
 class Classdairy(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,6 +18,10 @@ class Classdairy(models.Model):
     def __str__(self):
         return self.content
 
+    @property
+    def get_html_url(self):
+        url = reverse('classdairy:calender-detail', args=(self.id,))
+        return f'<a href="{url}"> {self.author} {self.subject} </a>'
     # def get_absolute_url(self):
     #     return reverse("user-view-classdairy", })
     

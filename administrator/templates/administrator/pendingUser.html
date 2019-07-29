@@ -1,0 +1,30 @@
+{% extends 'administrator/base3.html' %}
+{% block content %}
+    
+    <div class='container'>
+    <div class="col-sm-8"><h2>Pending Request</h2></div>
+        <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>List</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>
+                                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'accepting' %}">Approve</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            
+                </tbody>
+            </table>
+    
+    </div>
+        
+
+    
+{% endblock content %}

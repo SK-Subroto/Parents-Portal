@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from student.models import Student
 from django.urls import reverse
+from parents_portal import settings
+from users.models import User
 
 class Parents(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

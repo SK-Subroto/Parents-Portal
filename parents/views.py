@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Parents
 
 
-obj = Parents.objects.get(id = 1)
+obj = Parents.objects.all()
 
 def home(request):
    

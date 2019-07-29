@@ -7,7 +7,9 @@ from rest_framework.response import Response
 from result.models import Result
 from student.models import Student
 from admission.models import Admission
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
+from users.decorators import teacher_required, parent_required
 
 # def progressReport(request):
 #     return render(request, 'progress_report/progressreport.html')
@@ -22,10 +24,11 @@ def get_data(request, *args, **kwargs):
     # stu = Student.objects.get(user = request.user)
     # adm = Admission.objects.filter(student = stu).first()
     # res = Result.objects.get(admission_id = adm.id)
+    # stu = Student.objecrs.filter()
     res=Result.objects.filter(admission_id__student__user__id = request.user.id)
     
     data = {
-        "sales": 12,
+        "sales": request.user.id,
         "customers": 10,
     }
     return JsonResponse(data) # http response
@@ -40,7 +43,7 @@ class ChartData(APIView):
         # qs_count = User.objects.all().count()
         # q = Result.objects.get(id=2)
         total_result = []
-        res=Result.objects.filter(admission_id__student__user__id = 1)
+        res=Result.objects.filter(admission_id__student__user__id = 10)
         for cnt in range(res.count()):
             total_result.append(res[cnt].first_mark + res[cnt].second_mark + res[cnt].third_mark)
         labels = ["1st Term", "2nd Term", "3rd Term"]
@@ -60,7 +63,7 @@ class BarData(APIView):
 
     def get(self, request, format=None):
         # qs_count = User.objects.all().count()
-        res=Result.objects.filter(admission_id__student__user__id = 1)
+        res=Result.objects.filter(admission_id__student__user__id = 10)
         labels = ["Bangla", "English", "Math"]
         default_items = [[92,90,95], [res[0].first_mark, res[1].first_mark, res[2].first_mark]]
         data = {

@@ -2,7 +2,7 @@ from django.urls import path
 # from .views import BehaviourListView
 from  .import views
 urlpatterns = [
-    path('user/<str:username>', views.BehaviourListView.as_view(), name='user-view-behaviour'),
+    path('viewbahave/', views.BehaviourListView, name='user-view-behaviour'),
     path('behaviour/new/', views.BehaveCreateView.as_view(), name = 'behavior-create'),
     path('behaviour/<int:pk>/update', views.BehaveUpdateView.as_view(), name = 'behavior-update'),
     path('behaviour/<int:pk>/delete', views.BehaveDeleteView.as_view(), name = 'behavior-delete'),

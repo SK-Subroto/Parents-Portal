@@ -34,6 +34,8 @@
         <link href="{% static 'parents/assets/css/lib/calendar/fullcalendar.css' %}" rel="stylesheet" />
         <link href="{% static 'parents/assets/css/lib/jsgrid/jsgrid-theme.min.css' %}" rel="stylesheet" />
         <link href="{% static 'parents/assets/css/lib/jsgrid/jsgrid.min.css' %}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -57,26 +59,26 @@
                         </li>
                         <li><a href="#"><i class="ti-email"></i> Email</a></li>
                         <li><a href="#"><i class="ti-bar-chart-alt"></i> Payment Ledger</a></li>
-                                                <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> View Activity <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> View Activity <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                             <ul>
                                 <li><a href="#">Attendence</a></li>
                                 <li><a href="#">Class Schedule</a></li>
                                 <li><a href="#">Exam Schedule</a></li>
-                                <li><a href="#">Behavioral</a></li>
+                                <li><a href="{% url 'parents-view-behaviour' %}">Behavioral</a></li>
 
                             </ul>
                         </li>
                         <li class="label">Features</li>
 
-                        <li><a href="{% url 'parents-dairy' %}"><i class="ti-bookmark-alt"></i> Class Dairy </a></li>
+                        <li><a href="{% url 'classdairy:calendar' %}"><i class="ti-bookmark-alt"></i> Class Dairy </a></li>
                         <li><a href="{% url 'parents-result' %}"><i class="ti-receipt"></i> Result </a></li>
-                        <li><a href="{% url 'home' %}"><i class="ti-bar-chart-alt"></i> Progress Report </a></li>
+                        <li><a href="{% url 'progress-report-parent' %}"><i class="ti-bar-chart-alt"></i> Progress Report </a></li>
                         <li><a href="{% url 'notice-parent' %}"><i class="ti-files"></i> Notice </a></li>
                         <li><a href="{% url 'parents-meeting' %}"><i class="ti-calendar"></i> Meeting </a></li>
 
                         <li class="label">Extra</li>
                         
-                        <li><a><i class="ti-close"></i> Logout</a></li>
+                        <li><a href="{% url 'logout' %}"><i class="ti-close"></i> Logout</a></li>
         
                 </div>
             </div>
@@ -214,7 +216,7 @@
                         </div>
                         <div class="dropdown dib">
                             <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">Mr. Munna
+                                <span class="user-avatar">
                                     <i class="ti-angle-down f-s-10"></i>
                                 </span>
                                 <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
@@ -323,6 +325,22 @@
         <script src="{% static 'parents/assets/js/lib/jsgrid/fields/jsgrid.field.control.js' %}"></script>
         <script src="{% static 'parents/assets/js/lib/jsgrid/jsgrid-init.js' %}"></script>
         <!-- JS Grid Scripts End-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        {% comment %} <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> {% endcomment %}
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+            <script>
+            $(document).ready(function(){
+            {% block jquery %}{% endblock %}
+            })
+        </script>
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        {% comment %} <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script> {% endcomment %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
     </body>
 
 </html>

@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 
-class CustomUser(AbstractBaseUser):
-    is_approve = models.BooleanField(default=False)
+class User(AbstractUser):
+    is_parent = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
+

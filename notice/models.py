@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from administrator.models import Administrator
 from django.utils import timezone
 from django.urls import reverse 
+from users.models import User
 
 class Notice(models.Model):
     title = models.CharField(max_length=100)

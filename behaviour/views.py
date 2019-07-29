@@ -1,26 +1,37 @@
 from django.shortcuts import render, get_object_or_404,HttpResponse, redirect
 from django.views.generic import CreateView, ListView, TemplateView, UpdateView, DeleteView
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Behavior
+from users.models import User
 from django.forms import ModelForm
+from users.decorators import teacher_required, parent_required
 
+# class BehaviourListView(ListView):
+#     queryset = Behavior.objects.all()
+#     model = Behavio
+#     template_name = 'behaviour/behaviourTeacher.html'
+#     context_object_name = 'queryset'
 
-class BehaviourListView(ListView):
-    queryset = Behavior.objects.all()
-    model = Behavior
-    template_name = 'behaviour/behaviourTeacher.html'
-    context_object_name = 'queryset'
+#     def get_queryset(self):
+#         user = get_object_or_404(User, username=self.kwargs.get('username'))
+#         return Behavior.objects.filter(author=user)
 
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Behavior.objects.filter(author=user)
+def BehaviourListView(requst):
+    queryset = Behavior.objects.filter(author__id = requst.user.id)
+
+    context = {
+        'queryset': queryset
+    }
+    return render(requst, 'behaviour/behaviourTeacher.html', context)
+
 
 
 class BehaveCreateView(LoginRequiredMixin, CreateView):
     model = Behavior
-    success_url = "/behaviour/user/sk"
+    success_url = "/behaviour/viewbahave"
     fields = ['student','date_post','catagory', 'scale', 'content']
 
     def form_valid(self, form):
@@ -30,7 +41,7 @@ class BehaveCreateView(LoginRequiredMixin, CreateView):
 
 class BehaveUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Behavior
-    success_url = "/behaviour/user/sk"
+    success_url = "/behaviour/viewbahave"
     fields = ['catagory', 'scale', 'content']
 
     def form_valid(self, form):
@@ -45,7 +56,7 @@ class BehaveUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class BehaveDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Behavior
-    success_url = "/behaviour/user/sk"
+    success_url = "/behaviour/viewbahave"
 
     def test_func(self):
         post = self.get_object()

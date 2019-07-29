@@ -107,7 +107,7 @@ $(document).ready(function(){
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
         /////////////////////////
-        $.post("{% url 'classdairy-create' %}",
+        $.post("{% url 'classdairy:classdairy-create' %}",
           {
             date_post: $("#date").val(),
             content: $("#content").val(),
@@ -189,7 +189,7 @@ $(document).ready(function(){
                             
                             <td><textarea>{{ dairy.comment }}</textarea></td>
                             <td>
-                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'parents-classdairy-update' dairy.id %}"><i class="material-icons">&#xE254;</i></a>
+                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'classdairy:parents-classdairy-update' dairy.id %}"><i class="material-icons">&#xE254;</i></a>
                                 {% comment %} <a class="delete" title="Delete" data-toggle="tooltip" href="{% url 'classdairy-delete' dairy.id %}"><i class="material-icons">&#xE872;</i></a> {% endcomment %}
                             </td>
                         </tr>

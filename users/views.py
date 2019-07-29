@@ -1,22 +1,57 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 #from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm
+# decorators
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from .decorators import teacher_required, parent_required
+# from .forms import UserRegisterForm
+from django.views.generic import CreateView, TemplateView
+from .forms import TeacherSignUpForm, ParentSignUpForm
+from .models import User
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for { username }!')
-            return redirect('login')
-
-    else:
-        form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form': form})
+class SignUpView(TemplateView):
+    template_name = 'landing/signup.html'
 
 
-def profile(request):
-    return render(request, 'user/profile.html')
+def home(request):
+    if request.user.is_authenticated:
+        if request.user.is_parent:
+            return redirect('parents-home')
+        elif request.user.is_teacher:
+            return redirect('teacher-home')
+    # return render(request, 'user/login.html')
+
+
+class TeacherSignUpView(CreateView):
+    model = User
+    form_class = TeacherSignUpForm
+    template_name = 'users/register.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'teacher'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        # login(self.request, user)
+        return redirect('login')
+
+
+class ParentSignUpView(CreateView):
+    model = User
+    form_class = ParentSignUpForm
+    template_name = 'users/register.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'student'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        # login(self.request, user)
+        return redirect('login')
+
+

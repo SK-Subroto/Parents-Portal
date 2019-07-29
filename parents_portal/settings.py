@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '26ak!!nkw01f%7-sz7#ie@8tzgoi+pr&+#nvayd$^$r_=)@5l$'
+SECRET_KEY = 'ptl3&oc2nh29)##rkrmh^p#l_(lb9tecz#bgc4f)qq=dtrlha6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,28 +31,31 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'parents.apps.ParentsConfig',
-    'teacher.apps.TeacherConfig',
-    'student.apps.StudentConfig',
-    'users.apps.UsersConfig',
-    'classdairy',
-    'progress_report',
-    'clss',
-    'subject',
-    'admission',
-    'result',
-    'behaviour',
-    'administrator',
-    'notice',
-    'landing',
-    'crispy_forms',
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #myApps
+    'users',
+    'crispy_forms',
+    'administrator',
+    'admission',
+    'behaviour',
+    'classdairy',
+    'clss',
+    'landing',
+    'notice',
+    'parents',
+    'progress_report',
+    'result',
+    'student',
+    'subject',
+    'teacher',
+    'rest_framework',
+    'chat',
+    
 ]
 
 MIDDLEWARE = [
@@ -134,9 +137,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#customize
 
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+LOGIN_REDIRECT_URL = 'profile'
+
+# LOGOUT_REDIRECT_URL = 'profile'
+
+# LOGIN_REDIRECT_URL = 'profile'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'parents-home'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
