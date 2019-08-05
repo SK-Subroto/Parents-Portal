@@ -6,9 +6,14 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-8"><h2>Behavior Assessment</h2></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <a href="{% url 'behavior-create' %}" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
+                        {% comment %} <a href="#" type="button" class="btn btn-success" ><i class="fa fa-plus"></i> View Rank</a> {% endcomment %}
                         {% comment %} <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button> {% endcomment %}
+                    </div>
+                     <div class="col-sm-2">
+                         <a href="{% url 'behave_rank' %}" type="button" class="btn btn-success" > View Ranklist</a>
+                        
                     </div>
                 </div>
             </div>

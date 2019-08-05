@@ -31,6 +31,7 @@ urlpatterns = [
     path('progress_report/', include('progress_report.urls')),
     path('behaviour/', include('behaviour.urls')),
     path('notice/',include('notice.urls')),
+    path('result/',include('result.urls')),
     # path('register/', user_views.register, name='register'),
     path('', user_views.home, name='home'),
     path('accounts/signup/', user_views.SignUpView.as_view(), name='signup'),

@@ -5,6 +5,7 @@ from users.models import User
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Behavior
+from student.models import Student
 from users.models import User
 from django.forms import ModelForm
 from users.decorators import teacher_required, parent_required
@@ -63,6 +64,30 @@ class BehaveDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+def RanklistView(request):
+    stu = Student.objects.all()
+    student_id = []
+    behave_point = []
+    for cnt in range(stu.count()):
+        point = Behavior.objects.filter(student__stu_id = stu[cnt].stu_id)
+        total_point = 0
+        for cnt1 in range(point.count()):
+            total_point = total_point + point[cnt1].scale
+    
+        student_id.append(stu[cnt].stu_id)
+        behave_point.append(total_point)
+        # behave_point.sort()
+    behave_point = zip(stu, behave_point)
+    data = {
+        # 'students': stu,
+        'behave_point': behave_point
+
+    }
+
+    return render(request, 'behaviour/ranklist.html', data)
+
 
 
 ##Parents

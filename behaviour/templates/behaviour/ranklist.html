@@ -1,0 +1,34 @@
+{% extends 'teacher/base2.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Behavior Rank List</h2></div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student Id</th>
+                        <th>Point</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stu, point in  behave_point %}
+                        <tr>
+                            <td>{{ stu.name }}</td>
+                            <td>{{ stu.stu_id }}</td>
+                            <td>{{ point }}</td>
+                        </tr>
+                    {% endfor %}
+            
+                </tbody>
+            </table>
+        </div>
+    </div>     
+{% endblock content %}
+    
+                            
