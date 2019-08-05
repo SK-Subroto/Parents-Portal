@@ -32,6 +32,7 @@ urlpatterns = [
     path('behaviour/', include('behaviour.urls')),
     path('notice/',include('notice.urls')),
     path('result/',include('result.urls')),
+    path('chat/',include('chat.urls')),
     # path('register/', user_views.register, name='register'),
     path('', user_views.home, name='home'),
     path('accounts/signup/', user_views.SignUpView.as_view(), name='signup'),
