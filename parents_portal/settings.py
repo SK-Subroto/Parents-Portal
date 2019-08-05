@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'teacher',
     'rest_framework',
     'chat',
+    'meeting',
     
 ]
 

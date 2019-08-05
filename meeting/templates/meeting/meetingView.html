@@ -1,0 +1,42 @@
+{% extends 'teacher/base2.html' %}
+{% block content %}
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Meeting</h2></div>
+                    <div class="col-sm-5">
+                        <a href="{% url 'create_meeting' %}" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Date</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for meeting in meetings %}
+                        <tr>
+                            <td>{{ meeting.student.stu_id }}</td>
+                            <td>{{ meeting.date }}</td>
+                            <td>{{ meeting.message }}</td>
+                            <td>
+{#                                <a class="add" title="Add" data-toggle="tooltip" href="#"><i class="material-icons">&#xE03B;</i></a>#}
+                                <a class="edit" title="Edit" data-toggle="tooltip" href="{% url 'meeting_update' meeting.id %}"><i class="material-icons">&#xE254;</i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="{% url 'delete_meeting' meeting.id %}"><i class="material-icons">&#xE872;</i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Result
 from student.models import Student
 from admission.models import Admission
+from users.models import User
 
 
 def resultSearch(request):
@@ -14,10 +15,12 @@ def viewResult(request):
         results = Result.objects.filter(admission_id__student__stu_id = stu_id, admission_id__clss = clss_no)
         subjects = Admission.objects.filter(student__stu_id = stu_id)
         student = Student.objects.filter(stu_id = stu_id).first()
+        user = User.objects.filter(id = request.user.id).first()
         result = zip(subjects, results)
         context = {
             'results' : result,
-            'student' : student
+            'student' : student,
+            'user' : user
         }
     
     return render(request, 'result/showResult.html', context)

@@ -71,10 +71,10 @@
                         <li class="label">Features</li>
 
                         <li><a href="{% url 'classdairy:calendar' %}"><i class="ti-bookmark-alt"></i> Class Dairy </a></li>
-                        <li><a href="{% url 'parents-result' %}"><i class="ti-receipt"></i> Result </a></li>
+                        <li><a href="{% url 'result_search' %}"><i class="ti-receipt"></i> Result </a></li>
                         <li><a href="{% url 'progress-report-parent' %}"><i class="ti-bar-chart-alt"></i> Progress Report </a></li>
                         <li><a href="{% url 'notice-parent' %}"><i class="ti-files"></i> Notice </a></li>
-                        <li><a href="{% url 'parents-meeting' %}"><i class="ti-calendar"></i> Meeting </a></li>
+                        <li><a href="{% url 'parents_meeting' %}"><i class="ti-calendar"></i> Meeting </a></li>
 
                         <li class="label">Extra</li>
                         
@@ -155,9 +155,9 @@
                             </div>
                         </div>
                         <div class="dropdown dib">
-                            <div class="header-icon" data-toggle="dropdown">
-                                <i class="ti-email"></i>
-                                <div class="drop-down dropdown-menu dropdown-menu-right">
+                            <div class="header-icon" >
+                                <a href="{% url 'chat_home' %}" ><i class="ti-email"></i></a>
+                                {% comment %} <div class="drop-down dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-content-heading">
                                         <span class="text-left">2 New Messages</span>
                                         <a href="email.html">
@@ -212,7 +212,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                         <div class="dropdown dib">
                             <div class="header-icon" data-toggle="dropdown">

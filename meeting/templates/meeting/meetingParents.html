@@ -1,0 +1,33 @@
+{% extends 'parents/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Meeting</h2></div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>StudentID</th>
+                        <th>Date</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for meeting in meetingP %}
+                        <tr>
+                            <td>{{ meeting.student.name }}</td>
+                            <td>{{ meeting.date }}</td>
+                            <td>{{ meeting.message }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+
