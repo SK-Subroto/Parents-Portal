@@ -46,6 +46,7 @@ class ParentSignUpForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_parent = True
+        user.is_active = False
         user.save()
         # student = Student.objects.create(user=user)
         # student.interests.add(*self.cleaned_data.get('interests'))

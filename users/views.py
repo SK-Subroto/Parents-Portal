@@ -22,6 +22,8 @@ def home(request):
             return redirect('parents-home')
         elif request.user.is_teacher:
             return redirect('teacher-home')
+        else:
+            return redirect('pending-reqest')
     # return render(request, 'user/login.html')
 
 

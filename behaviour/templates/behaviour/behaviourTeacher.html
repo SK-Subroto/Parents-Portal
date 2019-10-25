@@ -5,7 +5,7 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Behavior Assessment</h2></div>
+                    <div class="col-sm-8"><h2>Student complain</h2></div>
                     <div class="col-sm-2">
                         <a href="{% url 'behavior-create' %}" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
                         {% comment %} <a href="#" type="button" class="btn btn-success" ><i class="fa fa-plus"></i> View Rank</a> {% endcomment %}
@@ -31,12 +31,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for behave in queryset %}
+                    {% for behave in object_list %}
                         <tr>
                             <td>{{ behave.author }}</td>
                             <td>{{ behave.date_post }}</td>
                             <td>{{ behave.student.stu_id }}</td>
-                            <td>{{ behave.catagory }}</td>
+                            {% if behave.catagory == 1 %}
+                            <td>class response</td>
+                            {% elif behave.catagory == 2 %}
+                            <td>Fight</td>
+                            {% else %}
+                            <td>Misbehave</td>
+                            {% endif %}
                             <td>{{ behave.scale }}</td>
                             <td>{{ behave.content }}</td>
                             <td>{{ behave.check }}</td>

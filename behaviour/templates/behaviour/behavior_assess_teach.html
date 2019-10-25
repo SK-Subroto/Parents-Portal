@@ -1,0 +1,107 @@
+{% extends 'teacher/base2.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Behavior Assessment</h2></div>
+                    <div class="col-sm-2">
+                        <form action="{% url 'behave_assess' %}" method="get">
+                        <button type="submit" class="btn btn-success" id="myButton" value="{{object_list.0.student.stu_id}}" name='q'>Behavior Assessment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Teacher</th>
+                        <th>Date</th>
+                        <th>Student Id</th>
+                        <th>Class Attention</th>
+                        <th>Behave with Teacher</th>
+                        <th>Behave with Classmate</th>
+                        <th>Class Attendent</th>
+                        <th>Class Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for behave in object_list %}
+                        <tr>
+                            <td>{{ behave.author }}</td>
+                            <td>{{ behave.date_post }}</td>
+                            <td>{{ behave.student.stu_id }}</td>
+
+
+                            {% if behave.classAttention == -1 %}
+                            <td>Below Average</td>
+                            {% elif behave.classAttention == -2 %}
+                            <td>Average</td>
+                            {% elif behave.classAttention == 0 %}
+                            <td>Good</td>
+                            {% elif behave.classAttention == 1 %}
+                            <td>Very Good</td>
+                            {% elif behave.classAttention == 2 %}
+                            <td>Execellet</td>
+                            {% endif %}
+
+                            {% if behave.behaveTeacher == -1 %}
+                            <td>Below Average</td>
+                            {% elif behave.behaveTeacher == -2 %}
+                            <td>Average</td>
+                            {% elif behave.behaveTeacher == 0 %}
+                            <td>Good</td>
+                            {% elif behave.behaveTeacher == 1 %}
+                            <td>Very Good</td>
+                            {% elif behave.behaveTeacher == 2 %}
+                            <td>Execellet</td>
+                            {% endif %}
+
+                            {% if behave.behaveStudent == -1 %}
+                            <td>Below Average</td>
+                            {% elif behave.behaveStudent == -2 %}
+                            <td>Average</td>
+                            {% elif behave.behaveStudent == 0 %}
+                            <td>Good</td>
+                            {% elif behave.behaveStudent == 1 %}
+                            <td>Very Good</td>
+                            {% elif behave.behaveStudent == 2 %}
+                            <td>Execellet</td>
+                            {% endif %}
+
+                            {% if behave.attenClass == -1 %}
+                            <td>Below Average</td>
+                            {% elif behave.attenClass == -2 %}
+                            <td>Average</td>
+                            {% elif behave.attenClass == 0 %}
+                            <td>Good</td>
+                            {% elif behave.attenClass == 1 %}
+                            <td>Very Good</td>
+                            {% elif behave.attenClass == 2 %}
+                            <td>Execellet</td>
+                            {% endif %}
+
+
+                            {% if behave.performance == -1 %}
+                            <td>Below Average</td>
+                            {% elif behave.performance == -2 %}
+                            <td>Average</td>
+                            {% elif behave.performance == 0 %}
+                            <td>Good</td>
+                            {% elif behave.performance == 1 %}
+                            <td>Very Good</td>
+                            {% elif behave.performance == 2 %}
+                            <td>Execellet</td>
+                            {% endif %}
+                            
+                        </tr>
+                    {% endfor %}
+            
+                </tbody>
+            </table>
+        </div>
+    </div>     
+{% endblock content %}
+    
+                            

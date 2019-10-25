@@ -8,10 +8,10 @@ class Classdairy(models.Model):
     date_post = models.DateField(auto_now=False, auto_now_add=False)
     content = models.TextField()
     SUB_CHOICES = (
-        ('B', 'Bangla'),
-        ('E', 'English'),
+        ('Bangla', 'Bangla'),
+        ('English', 'English'),
     )
-    subject = models.CharField(max_length=1, choices=SUB_CHOICES, default="E")
+    subject = models.CharField(max_length=50, choices=SUB_CHOICES, default="English")
     check = models.BooleanField(default=False)
     comment = models.TextField(blank=True)
 

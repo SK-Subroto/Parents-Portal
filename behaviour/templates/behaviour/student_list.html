@@ -1,0 +1,95 @@
+{% extends 'behaviour/behavior_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="container">
+    <br/>
+	<div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <ul>
+                    {% for student in object_list %}
+                    {% comment %} <li>{{ student.stu_id }}, {{student.name}}</li> {% endcomment %}
+                        <div class="col-lg-10">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="user-profile">
+                                <div class="row">
+                                  <div class="col-lg-4">
+                                    <div class="user-photo m-b-30">
+                                      <img class="img-fluid" src="assets/images/user-profile.jpg" alt="" />
+                                    </div>
+                                
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="user-profile-name">{{ student.name }}</div>
+                                    <div class="user-Location">
+                                      <i class="ti-location-pin"></i> Kollypur,South Paikpara</div>
+                                  </div>
+
+                                  <div class="col-lg-8">
+                                    
+        
+                                    
+                                    <div class="custom-tab user-profile-tab">
+                                      <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                          <a href="#1" aria-controls="1" role="tab" data-toggle="tab">About</a>
+                                        </li>
+                                      </ul>
+                                      <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="1">
+                                          <div class="contact-information">
+                                            <div class="phone-content">
+                                              <span class="contact-title">Class:</span>
+                                              <span class="phone-number">Seven</span>
+                                            </div>
+                                            <div class="address-content">
+                                              <span class="contact-title">ID:</span>
+                                              <span class="mail-address">{{ student.stu_id }}</span>
+                                            </div>
+                                            <div class="website-content">
+                                              <span class="contact-title">Address:</span>
+                                              <span class="contact-website">{{ student.address }}</span>
+                                            </div>
+                                           
+                                          </div>
+                                          <div class="basic-information">
+                                            <h4>Basic information</h4>
+                                            <div class="birthday-content">
+                                              <span class="contact-title">Birthday:</span>
+                                              <span class="birth-date">January 31, 2010 </span>
+                                            </div>
+                                            <div class="gender-content">
+                                              <span class="contact-title">Gender:</span>
+                                              <span class="gender">Male</span>
+                                            </div><br/>
+                                                <div>
+                                                <form action="{% url 'behave_assess_view' %}" method="get">
+                                                <button type="submit" class="btn btn-success" name='q' value={{student.stu_id}}>Behavior Assessment</a>
+                                                </form>
+                                                </div><br/>
+                                                <div>
+                                                <form action="{% url 'user-view-behaviour' %}" method="get">
+                                                <button type="submit" class="btn btn-success" name='p' value={{student.stu_id}}>Student complain</a>
+                                                </form>
+                                                </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        
+                    {% endfor %}
+                </ul>
+            </div>
+            <!--end of col-->
+          
+
+           
+    </div>
+{% endblock content %}
+

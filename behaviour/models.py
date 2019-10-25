@@ -2,6 +2,7 @@ from django.db import models
 # from django.contrib.auth.models import User
 from student.models import Student
 from users.models import User
+from django.utils import timezone
 
 class Behavior (models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -26,3 +27,13 @@ class Behavior (models.Model):
 
     def __str__(self):
         return self.content
+
+class Behaviour_assess(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    date_post = models.DateTimeField(default=timezone.now)
+    classAttention = models.IntegerField()
+    behaveTeacher = models.IntegerField()
+    behaveStudent = models.IntegerField()
+    attenClass = models.IntegerField()
+    performance = models.IntegerField()

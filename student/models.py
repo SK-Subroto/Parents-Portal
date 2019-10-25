@@ -10,7 +10,7 @@ class Student(models.Model):
     address = models.TextField()
 
     def __str__(self):
-        return f'{self.user.username} {self.name}'
+        return f'{self.name} {self.stu_id}'
 
     def save(self, *args, **kwargs):
         super(Student, self).save(*args, **kwargs)
